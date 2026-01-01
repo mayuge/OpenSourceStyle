@@ -42,9 +42,13 @@
       "attribution": "<a href=\"https://openfreemap.org/\">OpenFreeMap</a>"
     },
     "bg-gradient": {
-      "type": "image",
-      "url": "https://github.com/mayuge/OpenSourceStyle/blob/main/gradient.png?raw=true",
-      "coordinates": [[-180, 85], [180, 85], [180, -85], [-180, -85]]
+      "type": "raster",
+      "tiles": [
+        "https://raw.githubusercontent.com/mayuge/OpenSourceStyle/main/tiles/{z}/{x}/{y}.png"
+      ],
+      "tileSize": 256,
+      "minzoom": 0,
+      "maxzoom": 5
     },
     "takeshima": {
       "type": "vector",
@@ -70,7 +74,7 @@
     {
       "id": "background",
       "type": "background",
-      "paint": {"background-color": "#eeeeee"}
+      "paint": {"background-color": "rgba(0,0,0,0)"}
     },
     {
       "id": "bg-gradient",

@@ -10,7 +10,7 @@ output_tiles_root = "tiles"
 
 tile_size_pixels = 256
 minimum_zoom = 0
-maximum_zoom = 20
+maximum_zoom = 5
 
 # ==========================
 # 画像読み込み

@@ -1,0 +1,1 @@
+- mapbox,maplibre で使用できるスタイルを公開

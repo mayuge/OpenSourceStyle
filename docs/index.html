@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenSourceStyle MapLibre Viewer</title>
+    <link
+      href="https://unpkg.com/maplibre-gl@3.4.0/dist/maplibre-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      #map {
+        position: absolute;
+        inset: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/maplibre-gl@3.4.0/dist/maplibre-gl.js"></script>
+    <script>
+      const status = document.getElementById("status")
+      const reloadBtn = document.getElementById("reloadBtn")
+      const defaultStyleUrl = "pokego.json"
+
+      if (typeof maplibregl !== "undefined") {
+        maplibregl.workerUrl =
+          "https://unpkg.com/maplibre-gl@3.4.0/dist/maplibre-gl-worker.js"
+      }
+
+      const map = new maplibregl.Map({
+        container: "map",
+        style: { version: 8, sources: {}, layers: [] },
+        center: [139.6917, 35.6895],
+        zoom: 5,
+      })
+
+      async function loadStyle(url) {
+        status.textContent = `Loading ${url} ...`
+        try {
+          const res = await fetch(url)
+          if (!res.ok) throw new Error(`${res.status} ${res.statusText}`)
+          const styleJson = await res.json()
+          map.setStyle(styleJson)
+          status.textContent = `Loaded ${url}`
+        } catch (err) {
+          status.textContent = `Error: ${err.message}`
+          console.error(err)
+        }
+      }
+
+      reloadBtn.addEventListener("click", () => loadStyle(defaultStyleUrl))
+      window.addEventListener("load", () => loadStyle(defaultStyleUrl))
+    </script>
+  </body>
+</html>

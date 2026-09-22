@@ -2095,6 +2095,7 @@
       "metadata": {"mapbox:group": "1444849242106.713"},
       "source": "openmaptiles",
       "source-layer": "place",
+      "minzoom": 11,
       "filter": ["==", "class", "village"],
       "layout": {
         "text-field": "{name}",
@@ -2115,6 +2116,7 @@
       "metadata": {"mapbox:group": "1444849242106.713"},
       "source": "openmaptiles",
       "source-layer": "place",
+      "minzoom": 11,
       "filter": ["==", "class", "town"],
       "layout": {
         "text-field": "{name}",
